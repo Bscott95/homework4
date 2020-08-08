@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Assets/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./Assets/style.css">
+</head>
+<body>
+    <header class="header">
+        <h4 id="highscore">View Highscores</h4>
+        <h4 id="timeBlock">Time: <span id="time">60</span></h4>
+    </header>
+    <main>
+        <div class="startPage">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. keep in mind that incorrect answers wil penalize your score/time by ten seconds!</p>
+            <button type="button" class="btn startButton">Start Quiz</button>
+        </div>
+
+        <div class="quizContainer hide">
+            <div id="quiz"></div>
+            <button id="previous" class="btn btn-secondary">Previous Question</button>
+            <button id="next" class="btn btn-secondary">Next Question</button>
+            <button type ="button" class ="btn btn-primary" id="submit">Submit Quiz</button>
+            <div id="results"></div>
+        </div>
+
+        <div class="highScore hide">
+            <h1>All Done!</h1>
+            <p>You're final score is <span id="finalScore"></span></p>
+            <div class="todos">
+                <form id="todo-form" method="POST">
+                  <label for="todo-text">Add your initials:</label>
+                  <input type="text" placeholder="Initials" name="todo-text" id="todo-text" />
+                </form>
+                <ul id="todo-list"></ul>
+                <button id="clearScores" class="btn btn-secondary">Clear Scores</button>
+                <button id="goBack" class="btn btn-secondary">Go Back</button>
+            </div>
+            
+        </div>
+        
+        
+
+    </main>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="./Assets/script1.js"></script>
+</body>
+</html>
