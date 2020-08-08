@@ -26,7 +26,7 @@ const $todoList = $("#todo-list");
 const $todoCountSpan = $("#todo-count");
 const $clearScores = document.querySelector('#clearScores')
 const $goBack = document.querySelector('#goBack')
-const todos = [];
+let todos = [];
 
 // Array of questions and answers for quiz
 const myQuestions = [
@@ -165,9 +165,8 @@ function buildQuiz() {
                     <div class="question"> ${currentQuestion.question} </div>
                     <div class="answers"> ${answers.join('')} </div>
                 </div>`
-            );
-        }
-    );
+            );    
+    });
     // combine output list into one string of HTML and put it on the page
     $quiz.innerHTML = output.join('');
 }
@@ -258,8 +257,7 @@ function highScores() {
     $finalScore.textContent = finalScore
     // set var to true as it relates to setTimer function and stopping the clock
     highScoresRun = true;
-}
-init();
+};
 
 function renderTodos() {
     // Clear todoList element and update todoCountSpan
@@ -271,11 +269,10 @@ function renderTodos() {
         $li.text(todo);
         $li.attr('data-index', i);
         $todoList.append($li);
-    }
-}
+    };
+};
 
 function init() {
-    console.log('init ran')
     // check if there are todos in localStorage
     if (localStorage.getItem("todos")) {
         const savedTodos = JSON.parse(localStorage.getItem("todos"))
@@ -283,12 +280,13 @@ function init() {
     }
     // Render todos to the DOM
     renderTodos();
-}
+};
 
 function storeTodos() {
     // Add code here to stringify the todos array and save it to the "todos" key in localStorage
     localStorage.setItem('todos', JSON.stringify(todos));
-}
+};
+
 // When form is submitted...
 $todoForm.on("submit", function (event) {
     event.preventDefault();
@@ -306,6 +304,7 @@ $todoForm.on("submit", function (event) {
     renderTodos();
 });
 
+// when go back is hit - reset necessary areas
 function goBack() {
     console.log('ran Go Back')
     $startPage.classList.remove('hide')
@@ -313,28 +312,33 @@ function goBack() {
     currentSlide = 0
     secondsLeft = 60
     highScoresRun = false
+    $resultsContainer.innerHTML = '';
 };
 
-// Why doesn't this clear my LI's on screen?
+// Clear storage, the todos array, and li's on screen
 function clearStorage() {
     localStorage.clear();
     $todoList.innerHTML = '';
-    // why does above not work? why do my names keep coming back after they have been cleared?
-    document.querySelector('#todo-list').innerText = ''
-    console.log('clear')
+    // why does above not work?
+    document.querySelector('#todo-list').innerHTML = ''
+    todos = []
 }
 
+// initializes local storage
+init();
 
 // // starts timer after start button is clicked away
 $startButton.addEventListener('click', startQuiz)
 
+// when the next button is clicked
 $previousButton.addEventListener("click", showPreviousSlide);
 $nextButton.addEventListener("click", showNextSlide);
 $nextButton.addEventListener("click", scoreTracker);
 
-// // on submit, show results
+// on submit, show results and move to high scores page
 $submitButton.addEventListener('click', calculateResults);
 $submitButton.addEventListener('click', highScores);
 
+// Highscores buttons
 $goBack.addEventListener('click', goBack);
 $clearScores.addEventListener('click', clearStorage);
