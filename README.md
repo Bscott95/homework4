@@ -31,4 +31,4 @@ The following animation demonstrates the application inspiration:
 ## links
 
 Github repository: https://github.com/Bscott95/homework4 <br>
-Application: file:///Users/brandonscott/bootcamp2/homework/homework4/index.html 
+Application: https://bscott95.github.io/homework4/ 
