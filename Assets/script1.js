@@ -2,6 +2,7 @@
 const $time = document.getElementById('time')
 let secondsLeft = 60;
 let highScoresRun = false
+const $viewHighScores = document.getElementById('highscore')
 
 // Variables for start page section
 const $startButton = document.querySelector('.startButton')
@@ -27,6 +28,7 @@ const $todoCountSpan = $("#todo-count");
 const $clearScores = document.querySelector('#clearScores')
 const $goBack = document.querySelector('#goBack')
 let todos = [];
+let finalScore = 0
 
 // Array of questions and answers for quiz
 const myQuestions = [
@@ -128,7 +130,7 @@ function setTimer() {
         secondsLeft--;
         $time.textContent = secondsLeft;
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             calculateResults();
             highScores();
@@ -237,7 +239,6 @@ function scoreTracker() {
     // var for the checked answer
     const selector = `input[name=question${currentSlide - 1}]:checked`;
     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-    finalScore = secondsLeft
     // checks if answer is correct or not and delivers a coresponding output message.
     // updates secondsLeft variable if inccorect
     if (correctAnswer === userAnswer) {
@@ -251,6 +252,7 @@ function scoreTracker() {
 // runs the high score page at the end of the quiz
 function highScores() {
     // show the HTML for the page
+    $startPage.setAttribute('class', 'hide');
     $quizContainer.setAttribute('class', 'hide');
     $highScore.classList.remove('hide')
     // update the finalScore
@@ -259,6 +261,7 @@ function highScores() {
     highScoresRun = true;
 };
 
+// Todos refers to the list of high scores
 function renderTodos() {
     // Clear todoList element and update todoCountSpan
     $todoList.html('');
@@ -342,3 +345,4 @@ $submitButton.addEventListener('click', highScores);
 // Highscores buttons
 $goBack.addEventListener('click', goBack);
 $clearScores.addEventListener('click', clearStorage);
+$viewHighScores.addEventListener('click', highScores)
